@@ -83,7 +83,7 @@ public class simpleCalculator {
 
 		} catch (Exception e) {
 			System.out.print("You have entered invalid floats, please re-enter");
-
+                        getSubtraction();   
 		}
 	}
 
@@ -101,7 +101,7 @@ public class simpleCalculator {
 
 		} catch (Exception e) {
 			System.out.print("You have entered invalid floats, please re-enter");
-
+                        getMultiplication();
 		}
 
 	}
