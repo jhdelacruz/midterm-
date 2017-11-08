@@ -1,160 +1,164 @@
+/*
+ *   Midterm assignment by Jared De La Cruz 11/7/2017
+*/
 import java.util.Scanner;
 
-public class simpleCalculator {
+public class Calculator {
+	
+		public static void main(String[] args) {
+			do {
+				try {
+					getMenu(); //method to display main menu
 
-	public static void main(String[] args) {
-		do {
+					Scanner keyboard = new Scanner(System.in);
+					int choice;
+					choice = keyboard.nextInt();
+
+					switch (choice) {// switch statement to execute methods 
+
+					case 1:
+						getAddition();
+						getExit();
+						break;
+					case 2:
+						getSubtraction();
+						getExit();
+						break;
+					case 3:
+						getMultiplication();
+						getExit();
+						break;
+					case 4:
+						getDivision();
+						getExit();
+						break;
+					case 5:
+						System.out.print("Thank you for using Jared's Handy Calculator");
+						return;
+
+					default:
+						System.out.print("Not a correct option. Please enter a number between 1 and 5\n");
+					}
+
+				} catch (Exception e) {  // If the user enters something either than 1-5 integer
+					                     //the error is "catched".  
+					System.out.println("Not a correct option. Please enter a number between 1 and 5\n");
+
+				}
+			} while (true);
+		}
+
+		static void getAddition() { //addition method 
+
 			try {
-				getMenu();
 
-				Scanner keyboard = new Scanner(System.in);
-				int choice;
-				choice = keyboard.nextInt();
+				Scanner readInput = new Scanner(System.in);
+				System.out.println(" ");
 
-				switch (choice) {
+				System.out.print("Please enter two floats to add, separated by a space:\n");
 
-				case 1:
-					getAddition();
-					getExit();
-					break;
-				case 2:
-					getSubtraction();
-					getExit();
-					break;
-				case 3:
-					getMultiplication();
-					getExit();
-					break;
-				case 4:
-					getDivision();
-					getExit();
-					break;
-				case 5:
-					System.out.print("Thank you for using Jared's Handy Calculator");
-					return;
+				float a = readInput.nextFloat();
+				float b = readInput.nextFloat();
 
-				default:
-					System.out.print("Not a correct option. Please enter a number between 1 and 5");
+				float sum = a + b;
+
+				System.out.printf("The result of adding %5.2f and %5.2f is: %5.2f\n", a, b, sum);
+
+			}
+
+			catch (Exception e) {
+				System.out.print("You have entered invalid floats, please re-enter\n");
+				getAddition(); // If the user enters an invalid choice the addition method is repeated 
+			}
+		}
+
+		static void getSubtraction() { //subtraction method 
+
+			try {
+				Scanner readInput = new Scanner(System.in);
+
+				System.out.println("Please enter two floats to subtract, separated by a space:\n");
+
+				float a = readInput.nextFloat();
+				float b = readInput.nextFloat();
+				float minus = a - b;
+
+				System.out.printf("The result of subtractiong %5.2f and %5.2f is: %5.2f\n", a, b, minus);
+
+			} catch (Exception e) {
+				System.out.print("You have entered invalid floats, please re-enter\n");
+	                        getSubtraction();   // If the user enters an invalid choice the subtraction method is repeated
+			}
+		}
+
+		static void getMultiplication() { //Multiplication method 
+			try {
+				Scanner readInput = new Scanner(System.in);
+
+				System.out.println("Please enter two floats to multiply, separated by a space:\n");
+
+				float a = readInput.nextFloat();
+				float b = readInput.nextFloat();
+				float product = a * b;
+
+				System.out.printf("The result of multiplying %5.2f and %5.2f is: %5.2f\n", a, b, product);
+
+			} catch (Exception e) {
+				System.out.print("You have entered invalid floats, please re-enter\n");
+	                        getMultiplication(); // If the user enters an invalid choice the multiplication method is repeated
+			}
+
+		}
+
+		static void getDivision() { //division method
+			try {
+
+				Scanner readInput = new Scanner(System.in);
+
+				System.out.println("Please enter two floats to divide, separated by a space:\n");
+
+				float a = readInput.nextFloat();
+				float b = readInput.nextFloat();
+				if (b == 0) {
+
+					System.out.print("You can not divide by zero\n");
+					getDivision(); // If the user enters an invalid choice the division method is repeated
+				} else {
+					float answer = a / b;
+
+					System.out.printf("The result of dividing %5.2f and %5.2f is: %5.2f\n", a, b, answer);
 				}
 
 			} catch (Exception e) {
-				System.out.println("Not a correct option. Please enter a number between 1 and 5");
-
+				System.out.print("You have entered invalid floats, please re-enter\n");
+				getDivision(); // If the user enters an invalid choice the division method is repeated
 			}
-		} while (true);
-	}
 
-	static void getAddition() {
+		}
 
-		try {
+		static void getMenu() { // method to display main menu
+			System.out.println("Welcome to Jared's Handy Calculator");
 
-			Scanner readInput = new Scanner(System.in);
+			System.out.println("");
+
+			System.out.println("1. Addition");
+			System.out.println("2. Subtraction");
+			System.out.println("3. Multiplication");
+			System.out.println("4. Division");
+			System.out.println("5. Exit");
+
+			System.out.println("");
+
+			System.out.print("What would you like to do?\n");
+
+		}
+
+		static void getExit() { //exit method
 			System.out.println(" ");
-
-			System.out.println("Please enter two floats to add, separated by a space: ");
-
-			float a = readInput.nextFloat();
-			float b = readInput.nextFloat();
-
-			float sum = a + b;
-
-			System.out.printf("The result of adding %5.2f and %5.2f is: %5.2f", a, b, sum);
-
-		}
-
-		catch (Exception e) {
-			System.out.print("You have entered invalid floats, please re-enter");
-			getAddition();
-		}
-	}
-
-	static void getSubtraction() {
-
-		try {
-			Scanner readInput = new Scanner(System.in);
-
-			System.out.println("Please enter two floats to subtract, separated by a space: \n");
-
-			float a = readInput.nextFloat();
-			float b = readInput.nextFloat();
-			float minus = a - b;
-
-			System.out.printf("The result of subtractiong %5.2f and %5.2f is: %5.2f", a, b, minus);
-
-		} catch (Exception e) {
-			System.out.print("You have entered invalid floats, please re-enter\n");
-                        getSubtraction();   
-		}
-	}
-
-	static void getMultiplication() {
-		try {
-			Scanner readInput = new Scanner(System.in);
-
-			System.out.println("Please enter two floats to multiply, separated by a space: ");
-
-			float a = readInput.nextFloat();
-			float b = readInput.nextFloat();
-			float product = a * b;
-
-			System.out.printf("The result of multiplying %5.2f and %5.2f is: %5.2f", a, b, product);
-
-		} catch (Exception e) {
-			System.out.print("You have entered invalid floats, please re-enter\n");
-                        getMultiplication();
-		}
-
-	}
-
-	static void getDivision() {
-		try {
-
-			Scanner readInput = new Scanner(System.in);
-
-			System.out.println("Please enter two floats to divide, separated by a space:\n ");
-
-			float a = readInput.nextFloat();
-			float b = readInput.nextFloat();
-			if (b == 0) {
-
-				System.out.print("You can not divide by zero\n");
-				getDivision();
-			} else {
-				float answer = a / b;
-
-				System.out.printf("The result of dividing %5.2f and %5.2f is: %5.2f", a, b, answer);
+			System.out.println("Press enter to continue");// user is prompted to press enter to continue 
+			Scanner keyboard = new Scanner(System.in);
+			if (keyboard.nextLine() == "13") { //when enter is pressed on keyboard programs exits. 
+				return;
 			}
-
-		} catch (Exception e) {
-			System.out.print("You have entered invalid floats, please re-enter\n");
-			getDivision();
-		}
-
-	}
-
-	static void getMenu() {
-		System.out.println("Welcome to Jared's Handy Calculator");
-
-		System.out.println("");
-
-		System.out.println("1. Addition");
-		System.out.println("2. Subtraction");
-		System.out.println("3. Multiplication");
-		System.out.println("4. Division");
-		System.out.println("5. Exit");
-
-		System.out.println("");
-
-		System.out.println("What would you like to do? ");
-
-	}
-
-	static void getExit() {
-		System.out.println(" ");
-		System.out.println("Press enter to continue");
-		Scanner keyboard = new Scanner(System.in);
-		if (keyboard.nextLine() == "13") {
-			return;
 		}
 	}
-}
