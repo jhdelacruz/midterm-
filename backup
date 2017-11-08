@@ -73,7 +73,7 @@ public class simpleCalculator {
 		try {
 			Scanner readInput = new Scanner(System.in);
 
-			System.out.println("Please enter two floats to subtract, separated by a space: ");
+			System.out.println("Please enter two floats to subtract, separated by a space: \n");
 
 			float a = readInput.nextFloat();
 			float b = readInput.nextFloat();
@@ -82,7 +82,7 @@ public class simpleCalculator {
 			System.out.printf("The result of subtractiong %5.2f and %5.2f is: %5.2f", a, b, minus);
 
 		} catch (Exception e) {
-			System.out.print("You have entered invalid floats, please re-enter");
+			System.out.print("You have entered invalid floats, please re-enter\n");
                         getSubtraction();   
 		}
 	}
@@ -100,7 +100,7 @@ public class simpleCalculator {
 			System.out.printf("The result of multiplying %5.2f and %5.2f is: %5.2f", a, b, product);
 
 		} catch (Exception e) {
-			System.out.print("You have entered invalid floats, please re-enter");
+			System.out.print("You have entered invalid floats, please re-enter\n");
                         getMultiplication();
 		}
 
@@ -157,3 +157,4 @@ public class simpleCalculator {
 			return;
 		}
 	}
+}
