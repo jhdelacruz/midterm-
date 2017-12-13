@@ -24,6 +24,13 @@ public class LetterGrader {
 	String middleNameorLastName;
 	double buffer;
 	
+	ArrayList <Double>  qOneList = new ArrayList <Double> ();
+	ArrayList <Double>  qTwoList = new ArrayList <Double> ();
+	ArrayList <Double>  qThreeList = new ArrayList <Double> ();
+	ArrayList <Double>  qFourList = new ArrayList <Double> ();
+	ArrayList <Double>  midTermOneList = new ArrayList <Double> ();
+	ArrayList <Double>  midTermTwoList = new ArrayList <Double> ();
+	ArrayList <Double>  FinalList = new ArrayList <Double> ();
 	
 
 	public void readScore() {
@@ -50,6 +57,7 @@ public class LetterGrader {
 		getTokenTokenizer.whitespaceChars(',',',');
 		
 		try {
+		//	ArrayList <Double>  qOneList = new ArrayList <Double> ();
 			nextToken = getTokenTokenizer.nextToken();
 			while (nextToken != StreamTokenizer.TT_EOF)
 			{
@@ -107,58 +115,110 @@ public class LetterGrader {
 							   			   
 			   nextToken = getTokenTokenizer.nextToken();
 			    //nextToken = getTokenTokenizer.nextToken();			   
-				ArrayList <Double>  qOneList = new ArrayList <Double> ();
 				
+			   //ArrayList <Double>  qOneList = new ArrayList <Double> ();
+			
 				qOneList.add(q1);
 			
-				ArrayList <Double>  qTwoList = new ArrayList <Double> ();
+				//ArrayList <Double>  qTwoList = new ArrayList <Double> ();
 				
 				qTwoList.add(q2);
 				
-				ArrayList <Double>  qThreeList = new ArrayList <Double> ();
+				//ArrayList <Double>  qThreeList = new ArrayList <Double> ();
 				
 				qThreeList.add(q3);
 				
-               ArrayList <Double>  qFourList = new ArrayList <Double> ();
+              // ArrayList <Double>  qFourList = new ArrayList <Double> ();
 				
 				qFourList.add(q4);
 				
-				ArrayList <Double>  midTermOneList = new ArrayList <Double> ();
+				//ArrayList <Double>  midTermOneList = new ArrayList <Double> ();
 				
 				midTermOneList.add(midTermOne);
 				
-				ArrayList <Double>  midTermTwoList = new ArrayList <Double> ();
+				//ArrayList <Double>  midTermTwoList = new ArrayList <Double> ();
 				
 				midTermTwoList.add(midTermTwo);
 				
-               ArrayList <Double>  FinalList = new ArrayList <Double> ();
+               //ArrayList <Double>  FinalList = new ArrayList <Double> ();
 				
 				FinalList.add(finalTerm);
+				
+				
+					
+				
 			
 				
 				//System.out.println(firstName +" "+ middleNameorLastName + " " + lastName + " " + " " + q1 + " " + q2 +  q3 + q4 + midTermOne + midTermTwo + finalTerm);
-				System.out.println(qOneList);
+				//System.out.println(qOneList);
 				//System.out.println(qTwoList);
 			   // System.out.println(qThreeList);
 				//System.out.println(qFourList);
-			//	System.out.println(midTermOneList);
+			//System.out.println(midTermOneList);
 				//System.out.println(midTermTwoList);
-				//System.out.println(FinalList);
+				//System.out.println(FinalList);Double qOneListSum = 0.0;
+				
 			
-		}
+				
+			}
+			
+			
+				
+			
+			
+			
+		
+			
+			
+			
+			
+			
 			
 	}
 		
 	catch (IOException err) {
 	System.out.println(err);
 }
-	}		
-	//}
-	
+		
+		
+			
+		
+		}
+		
+			
 	public void getAverages() {
-				
-				
+		System.out.println("        Q1      Q2           ");
+		System.out.print("Average "+ quizOneSum(qOneList)+ "   "+ quizTwoSum(qTwoList));
 	}
+	
+	
+	public static double quizOneSum(ArrayList<Double> qOneList) {
+				
+		if (qOneList.isEmpty())
+			return 0d;
+		double qOneSum = 0;
+		
+		for (int i = 0; i < qOneList.size(); i++)
+			qOneSum += qOneList.get(i);
+		return qOneSum/qOneList.size();
+	}
+		public static double quizTwoSum(ArrayList<Double> qTwoList) {
+			
+			if (qTwoList.isEmpty())
+				return 0d;
+			double qTwoSum = 0;
+			
+			for (int i = 0; i < qTwoList.size(); i++)
+				
+				qTwoSum += qTwoList.get(i);
+			
+			return qTwoSum/qTwoList.size();
+		}
+		
+		
+		
+		
+	
 	
 	public void calcLetterGrade() {}
 	
@@ -169,5 +229,6 @@ public class LetterGrader {
 	
 		
 	}
+
 
 
