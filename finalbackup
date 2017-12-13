@@ -1,0 +1,173 @@
+package ClassFinal;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.StreamTokenizer;
+import java.util.*;
+
+
+public class LetterGrader {
+	
+	double q1;
+	double q2;
+	double q3;
+	double q4;
+	double midTermOne;
+	double midTermTwo;
+	double finalTerm;
+	double nextToken;
+	String firstName;
+	String lastName;
+	String middleNameorLastName;
+	double buffer;
+	
+	
+
+	public void readScore() {
+		
+		BufferedReader bufferedReader = null;
+		StreamTokenizer getTokenTokenizer;
+		String fileName = "input_final.txt";
+		//int nextToken;
+		File inputFile = new File(fileName);
+		try {
+		FileReader fileStream = new FileReader(inputFile);
+			bufferedReader = new BufferedReader (fileStream);
+										
+			} 
+		
+		catch (FileNotFoundException err) {
+			
+		System.out.print(err);
+		System.exit(-1);
+						
+		}
+		
+		getTokenTokenizer = new StreamTokenizer(bufferedReader);
+		getTokenTokenizer.whitespaceChars(',',',');
+		
+		try {
+			nextToken = getTokenTokenizer.nextToken();
+			while (nextToken != StreamTokenizer.TT_EOF)
+			{
+				
+				firstName = getTokenTokenizer.sval;
+				
+				nextToken = getTokenTokenizer.nextToken();
+				
+				middleNameorLastName = getTokenTokenizer.sval;
+				
+				nextToken = getTokenTokenizer.nextToken();
+				
+				if (getTokenTokenizer.ttype == StreamTokenizer.TT_WORD) {
+				
+				lastName = getTokenTokenizer.sval;
+				nextToken = getTokenTokenizer.nextToken();
+				q1 = getTokenTokenizer.nval;	
+					
+				}
+				
+				else if (getTokenTokenizer.ttype == StreamTokenizer.TT_NUMBER) {
+					q1 = getTokenTokenizer.nval;
+					middleNameorLastName = lastName;
+					
+				}
+			
+				
+		
+				nextToken = getTokenTokenizer.nextToken();
+				//nextToken = getTokenTokenizer.nextToken();			
+				//q1 = getTokenTokenizer.nval;			
+			//	nextToken = getTokenTokenizer.nextToken();
+				
+				q2 = getTokenTokenizer.nval;
+				
+				nextToken = getTokenTokenizer.nextToken();
+				
+				q3 = getTokenTokenizer.nval;
+				
+				nextToken = getTokenTokenizer.nextToken();
+				
+				q4 = getTokenTokenizer.nval;
+				
+				nextToken = getTokenTokenizer.nextToken();
+				
+				midTermOne = getTokenTokenizer.nval;
+				
+				nextToken = getTokenTokenizer.nextToken();
+				
+				midTermTwo = getTokenTokenizer.nval;
+				
+				nextToken = getTokenTokenizer.nextToken();
+				
+				finalTerm = getTokenTokenizer.nval;
+							   			   
+			   nextToken = getTokenTokenizer.nextToken();
+			    //nextToken = getTokenTokenizer.nextToken();			   
+				ArrayList <Double>  qOneList = new ArrayList <Double> ();
+				
+				qOneList.add(q1);
+			
+				ArrayList <Double>  qTwoList = new ArrayList <Double> ();
+				
+				qTwoList.add(q2);
+				
+				ArrayList <Double>  qThreeList = new ArrayList <Double> ();
+				
+				qThreeList.add(q3);
+				
+               ArrayList <Double>  qFourList = new ArrayList <Double> ();
+				
+				qFourList.add(q4);
+				
+				ArrayList <Double>  midTermOneList = new ArrayList <Double> ();
+				
+				midTermOneList.add(midTermOne);
+				
+				ArrayList <Double>  midTermTwoList = new ArrayList <Double> ();
+				
+				midTermTwoList.add(midTermTwo);
+				
+               ArrayList <Double>  FinalList = new ArrayList <Double> ();
+				
+				FinalList.add(finalTerm);
+			
+				
+				//System.out.println(firstName +" "+ middleNameorLastName + " " + lastName + " " + " " + q1 + " " + q2 +  q3 + q4 + midTermOne + midTermTwo + finalTerm);
+				System.out.println(qOneList);
+				//System.out.println(qTwoList);
+			   // System.out.println(qThreeList);
+				//System.out.println(qFourList);
+			//	System.out.println(midTermOneList);
+				//System.out.println(midTermTwoList);
+				//System.out.println(FinalList);
+			
+		}
+			
+	}
+		
+	catch (IOException err) {
+	System.out.println(err);
+}
+	}		
+	//}
+	
+	public void getAverages() {
+				
+				
+	}
+	
+	public void calcLetterGrade() {}
+	
+	public void displayAverages() {}
+	
+	
+	
+	
+		
+	}
+
+
