@@ -1,0 +1,294 @@
+package ClassFinal;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.StreamTokenizer;
+import java.util.*;
+import java.text.DecimalFormat;
+
+public class LetterGrader {
+	
+		
+	double q1;
+	double q2;
+	double q3;
+	double q4;
+	double midTermOne;
+	double midTermTwo;
+	double finalTerm;
+	double nextToken;
+	String firstName;
+	String lastName;
+	String middleNameorLastName;
+	double buffer;
+	double finalGrade;
+	String letterGrade;
+	String inputFileName;
+	
+	
+	ArrayList <Double>  qOneList = new ArrayList <Double> ();
+	ArrayList <Double>  qTwoList = new ArrayList <Double> ();
+	ArrayList <Double>  qThreeList = new ArrayList <Double> ();
+	ArrayList <Double>  qFourList = new ArrayList <Double> ();
+	ArrayList <Double>  midTermOneList = new ArrayList <Double> ();
+	ArrayList <Double>  midTermTwoList = new ArrayList <Double> ();
+	ArrayList <Double>  FinalList = new ArrayList <Double> ();
+	ArrayList <String> studentNameList = new ArrayList<String>();
+	ArrayList <String> finalLetterGrade = new ArrayList<String>();
+	ArrayList <String> concateNameGrade = new ArrayList<String>();
+	
+	private static DecimalFormat df2 = new DecimalFormat(".##");
+	private static DecimalFormat df1 = new DecimalFormat ("#");
+
+	public void readScore() {
+		
+		BufferedReader bufferedReader = null;
+		
+		StreamTokenizer getTokenTokenizer;
+		
+		String inputFileName = "input_final.txt";
+		
+		File inputFile = new File(inputFileName);
+		
+		try {
+		
+			FileReader fileStream = new FileReader(inputFile);
+			bufferedReader = new BufferedReader (fileStream);
+										
+			} 
+		
+		catch (FileNotFoundException err) {
+			
+		System.out.print(err);
+		System.exit(-1);
+						
+		}
+		
+		getTokenTokenizer = new StreamTokenizer(bufferedReader);
+		getTokenTokenizer.whitespaceChars(',',',');
+		
+		try {
+		
+			nextToken = getTokenTokenizer.nextToken();
+			while (nextToken != StreamTokenizer.TT_EOF)
+			{
+				
+				firstName = getTokenTokenizer.sval;
+				
+				nextToken = getTokenTokenizer.nextToken();
+				
+				middleNameorLastName = getTokenTokenizer.sval;
+				
+				nextToken = getTokenTokenizer.nextToken();
+				
+				if (getTokenTokenizer.ttype == StreamTokenizer.TT_WORD) {
+				
+				lastName = getTokenTokenizer.sval;
+				nextToken = getTokenTokenizer.nextToken();
+				q1 = getTokenTokenizer.nval;	
+					
+				}
+				
+				else if (getTokenTokenizer.ttype == StreamTokenizer.TT_NUMBER) {
+					q1 = getTokenTokenizer.nval;
+					middleNameorLastName = lastName;
+					
+				}
+			
+				
+		
+				nextToken = getTokenTokenizer.nextToken();
+						
+			
+				
+				q2 = getTokenTokenizer.nval;
+				
+				nextToken = getTokenTokenizer.nextToken();
+				
+				q3 = getTokenTokenizer.nval;
+				
+				nextToken = getTokenTokenizer.nextToken();
+				
+				q4 = getTokenTokenizer.nval;
+				
+				nextToken = getTokenTokenizer.nextToken();
+				
+				midTermOne = getTokenTokenizer.nval;
+				
+				nextToken = getTokenTokenizer.nextToken();
+				
+				midTermTwo = getTokenTokenizer.nval;
+				
+				nextToken = getTokenTokenizer.nextToken();
+				
+				finalTerm = getTokenTokenizer.nval;
+							   			   
+			   nextToken = getTokenTokenizer.nextToken();
+			  
+			
+				qOneList.add(q1);
+			
+				
+				
+				qTwoList.add(q2);
+				
+				
+				
+				qThreeList.add(q3);
+				
+            
+				
+				qFourList.add(q4);
+				
+				
+				
+				midTermOneList.add(midTermOne);
+				
+			
+				midTermTwoList.add(midTermTwo);
+				
+               				
+				FinalList.add(finalTerm);
+				
+				studentNameList.add(firstName);
+				
+			
+				finalGrade = ((q1*0.10)+ (q2*0.10) + (q3*0.10) + (q4*0.10) + (midTermOne*.20) + (midTermTwo*0.15) + (finalTerm*0.25) );
+				//System.out.println(df2.format(finalScore));
+				
+				if (finalGrade>=90.00) {
+					letterGrade = "A"; 
+				}
+				else if (finalGrade>=80.00 && finalGrade <=89.00) {
+					letterGrade = "B";
+						}
+				else if (finalGrade>=70.00 && finalGrade <=79.00) {
+					letterGrade = "C";
+				}
+				
+				else if (finalGrade>=60.00 && finalGrade <=69.00) {
+					letterGrade = "D";
+				}
+				
+				else if (finalGrade <=59.00) {
+					letterGrade = "F";
+				}
+				
+				
+				finalLetterGrade.add(letterGrade);
+				
+				//System.out.println(letterGrade);
+			
+				//System.out.print(studentNameList);
+				//System.out.print(finalLetterGrade);
+			}
+			
+			
+			
+	}
+		
+	catch (IOException err) {
+	System.out.println(err);
+}
+		
+		
+		}
+		
+	
+	
+		
+
+
+			
+	public void getAverages() {
+		
+		System.out.println("Letter grade has been calculated for students in input file??? and writtend to output file??\n" );
+		
+		System.out.println("Here are the averages:\n");
+			
+		System.out.println("        Q1      Q2      Q3     Q4      MidI    MidII   Final");
+		
+		
+		
+		System.out.println("Average "+ df2.format(calculateScoreAverage(qOneList))+ "   "+ df2.format(calculateScoreAverage(qTwoList))+ "   " + df2.format(calculateScoreAverage(qThreeList)) + "  " + 
+				df2.format(calculateScoreAverage(qFourList)) + "   "  + df2.format(calculateScoreAverage(midTermOneList)) + "  " + df2.format(calculateScoreAverage(midTermTwoList)) + "   " + df2.format(calculateScoreAverage(FinalList)));
+		
+		
+		System.out.println("Minimum"  + " "+ df1.format(calcMin(qOneList))+ "      "+ df1.format(calcMin(qTwoList))+ "      "+ df1.format(calcMin(qThreeList))+ "     "+ df1.format(calcMin(qFourList))
+        + "       "+ df1.format(calcMin(midTermOneList)) + "    "+ df1.format(calcMin(midTermTwoList)) + "      "+ df1.format(calcMin(FinalList)));
+		
+			
+		
+		System.out.println("Maximum" + " "+ df1.format(calcMax(qOneList))+ "     "+ df1.format(calcMax(qTwoList))+ "      "+ df1.format(calcMax(qThreeList))+ "   "+ df1.format(calcMax(qFourList))
+		                  + "       "+ df1.format(calcMax(midTermOneList)) + "    "+ df1.format(calcMax(midTermTwoList)) + "     "+ df1.format(calcMax(FinalList)));
+		
+		//System.out.println(studentNameList.get);
+		//System.out.println(finalLetterGrade);
+		
+		
+	}
+	
+
+	public static double calculateScoreAverage(ArrayList<Double> scoreList) {
+				
+		if (scoreList.isEmpty())
+			return 0d;
+		double scoreSum = 0;
+		
+		for (int i = 0; i < scoreList.size(); i++)
+			scoreSum += scoreList.get(i);
+		return scoreSum/scoreList.size();
+	}
+				
+			
+	
+	public static double calcMax(ArrayList<Double> scoreList ){
+		
+	Double max = Double.MIN_VALUE;
+	for (Double score : scoreList) {
+		if(score > max) {
+			max = score;
+		}
+			
+	}
+		return max;	
+			
+	}
+			   
+	public static double calcMin(ArrayList<Double> scoreList ){
+		
+		Double min = Double.MAX_VALUE;
+		for (Double score : scoreList) {
+			if(score < min) {
+				min = score;
+			}
+				
+		}
+			return min;	
+				
+		}
+	
+	
+		
+	
+	public void writeLetterGrade() {
+		
+		for(int i = 0; i < studentNameList.size() && i < finalLetterGrade.size(); i++)
+		    System.out.println(studentNameList.get(i) + " " + finalLetterGrade.get(i));
+		
+	}
+	
+
+	
+	
+	
+	
+	
+	
+	}	
+	
+
+
